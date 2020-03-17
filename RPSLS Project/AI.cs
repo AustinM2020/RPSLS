@@ -7,12 +7,12 @@ namespace RPSLS_Project
     class AI : Player
     {
         Random random = new Random();
-        
+        public int choice;
         
         
         public override string ChooseGesture()
         {
-            int choice = random.Next(1, 5);
+            choice = random.Next(1, 5);
 
             switch (choice)
             {

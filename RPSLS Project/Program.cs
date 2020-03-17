@@ -4,10 +4,11 @@ namespace RPSLS_Project
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            Player player = new AI();
-            player.ChooseGesture();
+            Simulation game = new Simulation();
+            game.GameHuman();
             Console.ReadLine();
         }
     }

@@ -6,6 +6,7 @@ namespace RPSLS_Project
 {
     public class Player
     {
+        public int choice;
         public List<string> Gestures = new List<string>();
         public Player()
         {
@@ -22,9 +23,8 @@ namespace RPSLS_Project
             {
                 Console.WriteLine(i+1 + ")" + Gestures[i]);
             }
-            int choice = int.Parse(Console.ReadLine());
-        
-            switch(choice)
+            choice = int.Parse(Console.ReadLine());
+            switch (choice)
             {
                 case 1:
                     return Gestures[0];
