@@ -1,32 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RPSLS_Project
 {
     public class Simulation
     {
-        Player playerOne = new Player();
+        Player playerOne = new Human();
         Player playerTwo = new Human();
         Player computer = new AI();
         int scoreOne;
         int scoreTwo;
-        
+       
         public Simulation()
         {
 
         }
+        public void StartGame()
+        {
+            Console.WriteLine("RPSLS\nTYPE 1 FOR AN AI GAME!\nTYPE 2 TO PLAY YOUR FRIENDS!");
+            int gameChoice = int.Parse(Console.ReadLine());
+            switch (gameChoice)
+            {
+                case 1:
+                    GameAI();
+                    break;
+                case 2:
+                    GameHuman();
+                    break;
+                default:
+                    Console.WriteLine("invalid choice, choose again\n");
+                    StartGame();
+                    break;
+            }
+        }
         public void GameAI()
         {
-            playerTwo.choice = computer.choice;
-            Console.WriteLine("PLAYER ONES TURN");
-            playerOne.ChooseGesture();
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("COMPUTERS TURN");
-            computer.ChooseGesture();
-            CompareGestures();
-            Console.WriteLine("Player One Score: " + scoreOne + "\nComputer Score: " + scoreTwo);
-            Console.WriteLine("--------------------------------------------");
+            do
+            {                
+                Console.WriteLine("PLAYER ONES TURN");
+                playerOne.ChooseGesture();
+                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("COMPUTERS TURN");
+                computer.ChooseGesture();
+                Console.WriteLine("The Computer chose: " + computer.Gestures[computer.choice - 1]);
+                CompareGestures();
+                Console.WriteLine("Player One Score: " + scoreOne + "\nComputer Score: " + scoreTwo);
+                Console.WriteLine("--------------------------------------------");
+            }
+            while (scoreOne < 3 && scoreTwo < 3);
+            if(scoreOne == 3)
+            {
+                Console.WriteLine("PLAYER ONE WINS THE GAME");
+            }
+            else
+            {
+                Console.WriteLine("THE COMPUTER WINS THE GAME");
+            }
         }
         public void GameHuman()
         {
@@ -42,10 +70,22 @@ namespace RPSLS_Project
                 Console.WriteLine("--------------------------------------------");
             }
             while (scoreOne < 3 && scoreTwo < 3);
+            if (scoreOne == 3)
+            {
+                Console.WriteLine("PLAYER ONE WINS THE GAME");
+            }
+            else
+            {
+                Console.WriteLine("PLAYER TWO WINS THE GAME");
+            }
         }       
         public void CompareGestures()
         {
-            if(playerOne.choice == playerTwo.choice)
+            if(computer.choice >= 1)
+            {
+                playerTwo.choice = computer.choice;
+            }
+            if (playerOne.choice == playerTwo.choice)
             {
                 Console.WriteLine("Tie");
             }
@@ -69,7 +109,14 @@ namespace RPSLS_Project
             else if(playerTwo.choice == 1 && (playerOne.choice == 3 || playerOne.choice == 4))
             {
                 scoreTwo++;
-                Console.WriteLine("Player Two Wins Round");
+                if (computer.choice >= 1)
+                {
+                    Console.WriteLine("Computer Wins the Round");
+                }
+                else
+                {
+                    Console.WriteLine("Player Two Wins Round");
+                }
             }
         }
         public void PaperCheck()
@@ -82,7 +129,14 @@ namespace RPSLS_Project
             else if (playerTwo.choice == 2 && (playerOne.choice == 1 || playerOne.choice == 5))
             {
                 scoreTwo++;
-                Console.WriteLine("Player Two Wins Round");
+                if(computer.choice >= 1)
+                {
+                    Console.WriteLine("Computer Wins the Round");
+                }
+                else
+                {
+                    Console.WriteLine("Player Two Wins Round");
+                }
             }
         }
         public void ScissorsCheck()
@@ -95,7 +149,14 @@ namespace RPSLS_Project
             else if (playerTwo.choice == 3 && (playerOne.choice == 2 || playerOne.choice == 4))
             {
                 scoreTwo++;
-                Console.WriteLine("Player Two Wins Round");
+                if (computer.choice >= 1)
+                {
+                    Console.WriteLine("Computer Wins the Round");
+                }
+                else
+                {
+                    Console.WriteLine("Player Two Wins Round");
+                }
             }
         }
         public void LizardCheck()
@@ -108,7 +169,14 @@ namespace RPSLS_Project
             else if (playerTwo.choice == 4 && (playerOne.choice == 2 || playerOne.choice == 5))
             {
                 scoreTwo++;
-                Console.WriteLine("Player Two Wins Round");
+                if (computer.choice >= 1)
+                {
+                    Console.WriteLine("Computer Wins the Round");
+                }
+                else
+                {
+                    Console.WriteLine("Player Two Wins Round");
+                }
             }
         }
         public void SpockCheck()
@@ -121,7 +189,14 @@ namespace RPSLS_Project
             else if (playerTwo.choice == 5 && (playerOne.choice == 1 || playerOne.choice == 3))
             {
                 scoreTwo++;
-                Console.WriteLine("Player Two Wins Round");
+                if (computer.choice >= 1)
+                {
+                    Console.WriteLine("Computer Wins the Round");
+                }
+                else
+                {
+                    Console.WriteLine("Player Two Wins Round");
+                }
             }
         }
     }

@@ -8,7 +8,7 @@ namespace RPSLS_Project
         static void Main(string[] args)
         {
             Simulation game = new Simulation();
-            game.GameHuman();
+            game.StartGame();
             Console.ReadLine();
         }
     }

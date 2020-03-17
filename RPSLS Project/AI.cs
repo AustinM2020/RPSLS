@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RPSLS_Project
 {
     class AI : Player
     {
+        public  
+        
         Random random = new Random();
-        public int choice;
-        
-        
+         
         public override string ChooseGesture()
         {
-            choice = random.Next(1, 5);
+            choice = random.Next(1, 6);
 
             switch (choice)
             {
