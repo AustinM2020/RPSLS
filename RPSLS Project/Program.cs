@@ -6,7 +6,9 @@ namespace RPSLS_Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Player player = new AI();
+            player.ChooseGesture();
+            Console.ReadLine();
         }
     }
 }
