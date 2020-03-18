@@ -21,7 +21,6 @@ namespace RPSLS_Project
         public override string ChooseGesture()
         {
             choice = random.Next(1, 6);
-
             switch (choice)
             {
                 case 1:
@@ -41,9 +40,9 @@ namespace RPSLS_Project
         }
         public override string ChooseName()
         {
-            int choice = random.Next(1, 6);
+            int choice = random.Next(1, 5);
             name = Names[choice];
-            Console.WriteLine("Tha AI will be named: " + name);
+            Console.WriteLine("The AI will be named: " + name);
             return name;
         }
     }

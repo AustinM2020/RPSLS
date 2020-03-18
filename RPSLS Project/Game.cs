@@ -13,9 +13,15 @@ namespace RPSLS_Project
         {
 
         }
+        public void DisplayRules()
+        {
+            Console.WriteLine("ROCK PAPER SCISSORS LIZARD SPOCK\nRock crushes Scissors\nScissors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\n\nPRESS ENTER TO BEGIN");
+            Console.ReadLine();
+            ChooseGameType();
+        }
         public void ChooseGameType()
         {
-            Console.WriteLine("RPSLS\nTYPE 1 FOR AN AI GAME!\nTYPE 2 TO PLAY YOUR FRIENDS!");
+            Console.WriteLine("RPSLS\nTYPE 1 FOR AN AI GAME!\nTYPE 2 TO PLAY YOUR FRIENDS!\nTYPE 3 TO HAVE AN AI ONLY GAME");
             gameChoice = int.Parse(Console.ReadLine());
             switch (gameChoice)
             {
@@ -67,13 +73,18 @@ namespace RPSLS_Project
             {                
                 Console.WriteLine(playerOne.name + "'s TURN");
                 playerOne.ChooseGesture();
+                Console.WriteLine(playerOne.name + " chose: " + playerTwo.Gestures[playerOne.choice - 1]);
+                Console.ReadLine();
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine(playerTwo.name + "'s TURN");
                 playerTwo.ChooseGesture();
                 Console.WriteLine(playerTwo.name + " chose: " + playerTwo.Gestures[playerTwo.choice - 1]);
+                Console.ReadLine();
+                Console.WriteLine("--------------------------------------------");
                 CompareGestures();
                 Console.WriteLine(playerOne.name + "'s Score: " + playerOne.score + "\n" + playerTwo.name + "'s Score: " + playerTwo.score);
                 Console.WriteLine("--------------------------------------------");
+                Console.ReadLine();
             }
             while (playerOne.score < 2 && playerTwo.score < 2);
             if(playerOne.score == maxScore)
