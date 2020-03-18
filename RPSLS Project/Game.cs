@@ -43,14 +43,14 @@ namespace RPSLS_Project
             {
                 playerOne = new Human();
                 playerOne.ChooseName();
-                playerTwo = new Human();
+                playerTwo = new AI();
                 playerTwo.ChooseName();
             }
             else if (gameChoice == 2)
             {
                 playerOne = new Human();
                 playerOne.ChooseName();
-                playerTwo = new AI();
+                playerTwo = new Human();
                 playerTwo.ChooseName();
             }
             else if (gameChoice == 3)
