@@ -1,13 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace RPSLS_Project
 {
-    class AI : Player
+    public class AI : Player
     {
-        public  
-        
         Random random = new Random();
-         
+
+        List<string> Names = new List<string>();
+        public AI()
+        {
+            Names.Add("Aaron");
+            Names.Add("Frank");
+            Names.Add("CJ");
+            Names.Add("Jack");
+            Names.Add("Chris");
+
+        } 
+        
+        
+        
         public override string ChooseGesture()
         {
             choice = random.Next(1, 6);
@@ -16,19 +29,14 @@ namespace RPSLS_Project
             {
                 case 1:
                     return Gestures[0];
-                    break;
                 case 2:
                     return Gestures[1];
-                    break;
                 case 3:
                     return Gestures[2];
-                    break;
                 case 4:
                     return Gestures[3];
-                    break;
                 case 5:
                     return Gestures[4];
-                    break;
                 default:
                     Console.WriteLine("invalid choice, choose again\n");
                     return ChooseGesture();

@@ -17,19 +17,14 @@ namespace RPSLS_Project
             {
                 case 1:
                     return Gestures[0];
-                    break;
                 case 2:
                     return Gestures[1];
-                    break;
                 case 3:
                     return Gestures[2];
-                    break;
                 case 4:
                     return Gestures[3];
-                    break;
                 case 5:
                     return Gestures[4];
-                    break;
                 default:
                     Console.WriteLine("invalid choice, choose again\n");
                     return ChooseGesture();

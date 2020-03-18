@@ -8,6 +8,8 @@ namespace RPSLS_Project
     {
         
         public int choice;
+        public string name;
+        public int score;
         
         public List<string> Gestures = new List<string>();
         public Player()
@@ -20,6 +22,13 @@ namespace RPSLS_Project
         }
 
         public abstract string ChooseGesture();
+        
+        public virtual string ChooseName()
+        {
+            Console.WriteLine("Whats your name?");
+            name = Console.ReadLine();
+            return name;
+        }
         
     }
 }
