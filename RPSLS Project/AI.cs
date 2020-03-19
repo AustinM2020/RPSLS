@@ -18,23 +18,22 @@ namespace RPSLS_Project
             Names.Add("Chris");
 
         } 
-        public override string ChooseGesture()
+        public override Gestures ChooseGesture()
         {
             choice = random.Next(1, 6);
             switch (choice)
             {
                 case 1:
-                    return Gestures[0];
+                    return choices[0];
                 case 2:
-                    return Gestures[1];
+                    return choices[1];
                 case 3:
-                    return Gestures[2];
+                    return choices[2];
                 case 4:
-                    return Gestures[3];
+                    return choices[3];
                 case 5:
-                    return Gestures[4];
+                    return choices[4];
                 default:
-                    Console.WriteLine("invalid choice, choose again\n");
                     return ChooseGesture();
             }
         }
@@ -43,6 +42,7 @@ namespace RPSLS_Project
             int choice = random.Next(1, 5);
             name = Names[choice];
             Console.WriteLine("The AI will be named: " + name);
+            
             return name;
         }
     }

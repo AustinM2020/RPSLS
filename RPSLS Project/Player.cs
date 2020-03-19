@@ -10,18 +10,20 @@ namespace RPSLS_Project
         public int choice;
         public string name;
         public int score;
-        
-        public List<string> Gestures = new List<string>();
+        public List<Gestures> choices;
         public Player()
         {
-            Gestures.Add("Rock");
-            Gestures.Add("Paper");
-            Gestures.Add("Scissors");
-            Gestures.Add("Lizards");
-            Gestures.Add("Spock");
+            choices = new List<Gestures>() { new Gestures("Rock", new List<string> { "Paper", "Spock" }),
+                new Gestures("Paper", new List<string> { "Scissors", "Lizard" }),
+                new Gestures("Scissors", new List<string> { "Rock", "Spock" }),
+                new Gestures("Lizard", new List<string> { "Scissors", "Rock" }),
+                new Gestures("Spock", new List<string> { "Paper", "Lizard" }) };
         }
+        
+            
+        
 
-        public abstract string ChooseGesture();
+        public abstract Gestures ChooseGesture();
         
         public virtual string ChooseName()
         {

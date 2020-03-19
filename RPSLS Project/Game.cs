@@ -21,7 +21,7 @@ namespace RPSLS_Project
         }
         public void ChooseGameType()
         {
-            Console.WriteLine("RPSLS\nTYPE 1 FOR AN AI GAME!\nTYPE 2 TO PLAY YOUR FRIENDS!\nTYPE 3 TO HAVE AN AI ONLY GAME");
+            Console.WriteLine("RPSLS\nTYPE 1 FOR AN AI VS HUMAN GAME!\nTYPE 2 TO PLAY YOUR FRIENDS!\nTYPE 3 TO HAVE AN AI ONLY GAME!");
             gameChoice = int.Parse(Console.ReadLine());
             switch (gameChoice)
             {
@@ -65,6 +65,10 @@ namespace RPSLS_Project
                 playerOne.ChooseName();
                 playerTwo = new AI();
                 playerTwo.ChooseName();
+                if(playerTwo.name == playerOne.name)
+                {
+                    playerTwo.ChooseName();
+                }
             } 
         }
         public void RunGame()
@@ -73,12 +77,12 @@ namespace RPSLS_Project
             {                
                 Console.WriteLine(playerOne.name + "'s TURN");
                 playerOne.ChooseGesture();
-                Console.WriteLine(playerOne.name + " chose: " + playerTwo.Gestures[playerOne.choice - 1]);
+                Console.WriteLine(playerOne.name + " chose: " + playerTwo.choices[playerOne.choice - 1].type);
                 Console.ReadLine();
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine(playerTwo.name + "'s TURN");
                 playerTwo.ChooseGesture();
-                Console.WriteLine(playerTwo.name + " chose: " + playerTwo.Gestures[playerTwo.choice - 1]);
+                Console.WriteLine(playerTwo.name + " chose: " + playerTwo.choices[playerTwo.choice - 1].type);
                 Console.ReadLine();
                 Console.WriteLine("--------------------------------------------");
                 CompareGestures();
@@ -90,93 +94,37 @@ namespace RPSLS_Project
             if(playerOne.score == maxScore)
             {
                 Console.WriteLine(playerOne.name + " WINS THE GAME");
+                
             }
             else
             {
                 Console.WriteLine(playerTwo.name + " WINS THE GAME");
             }
+            Console.WriteLine("Would you like to play again?\ny = Yes\nn = No");
+            if (Console.ReadLine() == "y")
+            {
+                Console.Clear();
+                DisplayRules();
+            }
         }
         public void CompareGestures()
         {
-            if (playerOne.choice == playerTwo.choice)
+            if (playerOne.choices[playerOne.choice - 1].type == playerTwo.choices[playerTwo.choice - 1].type)
             {
                 Console.WriteLine("Tie");
             }
-            else if(playerOne.choice != playerTwo.choice)
+            else if (playerTwo.choices[playerTwo.choice - 1].losesTo.Contains(playerOne.choices[playerOne.choice - 1].type))
             {
-                RockCheck();
-                PaperCheck();
-                ScissorsCheck();
-                LizardCheck();
-                SpockCheck();    
+                playerOne.score++;
+                Console.WriteLine(playerOne.choices[playerOne.choice - 1].type + " Beats " + playerTwo.choices[playerTwo.choice - 1].type);
+                Console.WriteLine(playerOne.name + " Wins The Round");
+            }
+            else if (playerOne.choices[playerOne.choice - 1].losesTo.Contains(playerTwo.choices[playerTwo.choice - 1].type))
+            {
+                playerTwo.score++;
+                Console.WriteLine(playerTwo.choices[playerTwo.choice - 1].type + " Beats " + playerOne.choices[playerOne.choice - 1].type);
+                Console.WriteLine(playerTwo.name + " Wins The Round");
             }        
-        }
-        public void RockCheck()
-        {
-            if (playerOne.choice == 1 && (playerTwo.choice == 3 || playerTwo.choice == 4))
-            {
-                playerOne.score++;
-                Console.WriteLine(playerOne.name + " Wins The Round");
-            }
-            else if(playerTwo.choice == 1 && (playerOne.choice == 3 || playerOne.choice == 4))
-            {
-                playerTwo.score++;                
-                Console.WriteLine(playerTwo.name + " Wins The Round");
-            }
-        }
-        public void PaperCheck()
-        {
-            if (playerOne.choice == 2 && (playerTwo.choice == 1 || playerTwo.choice == 5))
-            {
-                playerOne.score++;
-                Console.WriteLine(playerOne.name + " Wins The Round");
-            }
-            else if (playerTwo.choice == 2 && (playerOne.choice == 1 || playerOne.choice == 5))
-            {
-                playerTwo.score++;
-                Console.WriteLine(playerTwo.name + " Wins The Round");
-
-            }
-        }
-        public void ScissorsCheck()
-        {
-            if (playerOne.choice == 3 && (playerTwo.choice == 2 || playerTwo.choice == 4))
-            {
-                playerOne.score++;
-                Console.WriteLine(playerOne.name + " Wins The Round");
-            }
-            else if (playerTwo.choice == 3 && (playerOne.choice == 2 || playerOne.choice == 4))
-            {
-                playerTwo.score++;
-                Console.WriteLine(playerTwo.name + " Wins The Round");
-            }
-        }
-        public void LizardCheck()
-        {
-            if (playerOne.choice == 4 && (playerTwo.choice == 2 || playerTwo.choice == 5))
-            {
-                playerOne.score++;
-                Console.WriteLine(playerOne.name + " Wins The Round");
-            }
-            else if (playerTwo.choice == 4 && (playerOne.choice == 2 || playerOne.choice == 5))
-            {
-                playerTwo.score++;
-                Console.WriteLine(playerTwo.name + " Wins The Round");
-            }
-        }
-        public void SpockCheck()
-        {
-            if (playerOne.choice == 5 && (playerTwo.choice == 1 || playerTwo.choice == 3))
-            {
-                playerOne.score++;
-                Console.WriteLine(playerOne.name + " Wins The Round");
-            }
-            else if (playerTwo.choice == 5 && (playerOne.choice == 1 || playerOne.choice == 3))
-            {
-                playerTwo.score++;
-                Console.WriteLine(playerTwo.name + " Wins The Round");
-
-            }
         }
     }
 }
